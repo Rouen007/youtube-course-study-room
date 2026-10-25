@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube 课程学习室 · Created by Xiao Ang</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="distill.css" />
+</head>
+<body>
+  <div class="shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand">
+          <div class="brand-mark">▶</div>
+          <div class="brand-info">
+            <p class="eyebrow">YouTube Course Study Room</p>
+            <h1>课程精读学习室</h1>
+            <div class="brand-subrow">
+              <span class="creator-tag">Created by Xiao Ang</span>
+              <button class="git-sync-chip" id="gitSyncChip" type="button" title="点击查看与 GitHub 远程同步状态">
+                <span class="sync-dot" id="syncChipDot"></span>
+                <span id="syncChipLabel">检测中…</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="学习模式">
+          <button class="nav-btn active" data-view="classroom">
+            <span class="nav-idx">01</span>
+            <div>
+              <strong>指导课堂</strong>
+              <small>YouTube 联动 + 1080p 关键帧 + 讲义</small>
+            </div>
+          </button>
+          <button class="nav-btn" data-view="distill">
+            <span class="nav-idx">02</span>
+            <div>
+              <strong>三层知识蒸馏</strong>
+              <small>导师原声 + 核心板书 + 可复现决策模型</small>
+            </div>
+          </button>
+          <button class="nav-btn" data-view="notebook">
+            <span class="nav-idx">03</span>
+            <div>
+              <strong>学习手帐 & 纪律</strong>
+              <small>心法总结、错因自查与持久化笔记</small>
+            </div>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="progress-label">
+          <span>学习进度</span>
+          <span id="progressMeta">已学完 0 / 0 讲</span>
+        </div>
+        <div class="progress-strip">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <small id="saveStatus" style="font-size:0.72rem;color:#8da4be;">准备就绪</small>
+
+        <!-- Red-dot Behind Banner -->
+        <div class="sync-behind-banner" id="syncBehindBanner" style="display:none;" title="点击查看 GitHub 远程更新">
+          <span class="sync-dot behind"></span>
+          <div class="sync-behind-text">
+            <strong>🔴 发现 GitHub 有新内容</strong>
+            <small>本地数据落后，点击查看拉取指引 ↗</small>
+          </div>
+        </div>
+
+        <small style="color:#64748b;font-size:0.7rem;text-align:center;">Created by Xiao Ang · YouTube Study Room</small>
+      </div>
+    </aside>
+
+    <!-- Workspace Main Area -->
+    <main class="workspace">
+      <!-- 01 指导课堂 View -->
+      <section class="view active" id="view-classroom">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">Interactive Classroom</p>
+            <h2>指导课堂 · 原片同步研读与高清板书</h2>
+          </div>
+          <div class="head-actions">
+            <button class="ghost git-sync-chip" id="gitTopPill" type="button">
+              <span class="sync-dot" id="syncTopDot"></span>
+              <span id="syncTopLabel">GitHub 同步</span>
+            </button>
+            <input id="lessonSearch" class="search-input" type="search" placeholder="搜索课名 / 知识点 / 标签..." />
+          </div>
+        </header>
+
+        <div class="library-layout">
+          <!-- Left lesson list -->
+          <div class="lesson-list" id="lessonList"></div>
+
+          <!-- Right lesson detail -->
+          <article class="lesson-detail" id="lessonDetail"></article>
+        </div>
+      </section>
+
+      <!-- 02 三层知识蒸馏 View -->
+      <section class="view" id="view-distill">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">Three-Layer Distillation Engine</p>
+            <h2>知识蒸馏 · 导师原声 · 核心板书 · 终局模型</h2>
+          </div>
+        </header>
+        <div id="distillMountPoint"></div>
+      </section>
+
+      <!-- 03 学习手帐 View -->
+      <section class="view" id="view-notebook">
+        <header class="page-head">
+          <div>
+            <p class="eyebrow">Personal Journal & Playbook</p>
+            <h2>我的学习手帐与执行纪律</h2>
+          </div>
+        </header>
+        <div class="notebook-grid">
+          <div class="note-box full">
+            <h3>我对本课程的核心认知与心法纪律</h3>
+            <p style="margin:0 0 8px;font-size:0.85rem;color:#8da4be;">不要只背诵口诀，写下你的底层因果逻辑与行动戒律。</p>
+            <textarea class="note-textarea" id="summaryNote" placeholder="写下你的核心心法..."></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Keyframe Lightbox Dialog -->
+  <dialog class="image-viewer" id="imageViewer">
+    <div class="modal-head">
+      <strong id="viewerTitle">关键帧放大图</strong>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <a class="ghost small btn-link" id="viewerJumpYT" href="#" target="_blank" rel="noopener" style="display:none;color:#e2b755;text-decoration:none;">🎬 跳到 YouTube 此刻 ↗</a>
+        <button class="ghost small" id="closeViewer" type="button">关闭 ESC</button>
+      </div>
+    </div>
+    <div class="modal-body viewer-stage">
+      <img id="viewerImg" alt="高清原图" />
+      <p id="viewerCaption" style="margin-top:12px;font-size:0.9rem;color:#cbd5e1;line-height:1.6;"></p>
+    </div>
+  </dialog>
+
+  <!-- GitHub Sync Dialog with Red-Dot Details -->
+  <dialog class="sync-modal-dialog" id="syncModal">
+    <div class="modal-head">
+      <div>
+        <strong style="font-size:1.1rem;">GitHub 仓库数据同步状态</strong>
+        <div style="font-size:0.78rem;color:#8da4be;margin-top:2px;">实时检测本地讲义/图解与远程 GitHub 差异</div>
+      </div>
+      <button class="ghost small" id="closeSyncModal" type="button">关闭 ESC</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="sync-compare-grid">
+        <div class="sync-compare-card">
+          <span class="eyebrow">💻 本地数据版本</span>
+          <div>
+            <span class="code-pill" id="localShaDisplay">-------</span>
+            <small id="localDateDisplay" style="color:#8da4be;margin-left:6px;">--:--:--</small>
+          </div>
+          <small style="color:#8da4be;">当前客户端已加载的数据</small>
+        </div>
+
+        <div class="sync-compare-card" id="remoteCard">
+          <span class="eyebrow">🌐 GitHub 远程最新 (main)</span>
+          <div>
+            <span class="code-pill" id="remoteShaDisplay">-------</span>
+            <small id="remoteDateDisplay" style="color:#8da4be;margin-left:6px;">--:--:--</small>
+          </div>
+          <small id="remoteMsgDisplay" style="color:#8da4be;">正在向 GitHub API 查询…</small>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;font-size:0.88rem;">
+        <p id="syncNoticeDesc" style="margin:0;">正在检查更新…</p>
+      </div>
+
+      <div id="syncCmdCard" style="display:none;margin-top:14px;">
+        <span class="eyebrow" style="color:#ef4444;">终端拉取更新命令：</span>
+        <div class="cmd-box">
+          <code id="pullCmdText">git pull origin main && ./study-room/native/build.sh</code>
+          <button class="primary small" id="btnCopyPullCmd" type="button">复制命令</button>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:14px;border-top:1px solid var(--line-color);">
+        <div style="display:flex;gap:8px;">
+          <button class="ghost small" id="btnSimulateBehind" type="button">🔴 模拟落后测试开关</button>
+          <button class="ghost small" id="btnCheckSyncNow" type="button">🔄 重新检测</button>
+        </div>
+        <a class="primary small" id="btnOpenGH" href="https://github.com/Rouen007/youtube-course-study-room" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block;">打开 GitHub 仓库 ↗</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Load Scripts in order -->
+  <script src="version.js"></script>
+  <script src="library-data.js"></script>
+  <script src="distill-data.js"></script>
+  <script src="distill.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+/* YouTube Course Study Room - Three-Layer Distillation Stylesheet
+ * Created by Xiao Ang
+ */
+
+:root {
+  --distill-border: rgba(255, 255, 255, 0.08);
+  --distill-bg: rgba(255, 255, 255, 0.02);
+  --distill-gold: #e2b755;
+  --distill-green: #38bdf8;
+  --distill-crimson: #f43f5e;
+}
+
+.distill-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+.distill-hero-quote {
+  position: relative;
+  background: linear-gradient(135deg, rgba(226, 183, 85, 0.08) 0%, rgba(20, 24, 33, 0.6) 100%);
+  border: 1px solid rgba(226, 183, 85, 0.3);
+  border-left: 5px solid var(--distill-gold);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.distill-hero-quote blockquote {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.distill-hero-quote .quote-author {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--distill-gold);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.distill-models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 20px;
+}
+
+.distill-model-card {
+  background: #181d28;
+  border: 1px solid var(--distill-border);
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.distill-model-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(226, 183, 85, 0.4);
+}
+
+.model-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.model-title-group h4 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.model-category {
+  font-size: 0.78rem;
+  color: #8da4be;
+  margin-top: 4px;
+}
+
+.model-badge {
+  background: rgba(226, 183, 85, 0.15);
+  color: var(--distill-gold);
+  border: 1px solid rgba(226, 183, 85, 0.3);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.model-desc {
+  font-size: 0.92rem;
+  color: #c0cedf;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.model-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.model-section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8da4be;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.model-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.model-step-item {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.step-num {
+  background: var(--distill-gold);
+  color: #121620;
+  font-size: 0.78rem;
+  font-weight: 800;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.step-content strong {
+  display: block;
+  font-size: 0.9rem;
+  color: #e6eef8;
+  margin-bottom: 3px;
+}
+
+.step-content p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #9cb2c9;
+  line-height: 1.5;
+}
+
+.model-invalidation {
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px dashed rgba(244, 63, 94, 0.4);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #fda4af;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.model-invalidation strong {
+  color: var(--distill-crimson);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.model-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.checklist-item input[type="checkbox"] {
+  accent-color: var(--distill-gold);
+  cursor: pointer;
+}
+
+/* Glossary card */
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.glossary-card {
+  background: #181d28;
+  border: 1px solid var(--distill-border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.glossary-card h5 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.glossary-abbr {
+  font-size: 0.75rem;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.glossary-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #9cb2c9;
+  line-height: 1.5;
+}

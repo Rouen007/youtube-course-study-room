@@ -1,0 +1,4 @@
+interface:
+  display_name: "YouTube 课程体系化研学与学习室脚手架"
+  short_description: "将任何 YouTube 视频课程转化为图文精读手册、1080p 关键帧图库与 macOS 原生桌面学习室 App (Created by Xiao Ang)"
+  default_prompt: "使用 $youtube-course-study-room，帮助我将 YouTube 课程转化为体系化图文精读手册、1080p 高清图解与本地 macOS 桌面学习室 App。"

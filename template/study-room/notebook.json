@@ -1,0 +1,24 @@
+{
+  "curatedBy": "Created by Xiao Ang",
+  "summaryNote": "把这门课程的核心心法沉淀为你自己的纪律。不要盲目相信口诀，在实战前逐项对照执行清单打勾。",
+  "mistakes": [
+    {
+      "id": "m1",
+      "text": "未经多周期确认盲目提前进场",
+      "count": 0
+    },
+    {
+      "id": "m2",
+      "text": "忽略关键时间窗口与外部环境风险",
+      "count": 0
+    },
+    {
+      "id": "m3",
+      "text": "未设止损或在破位失效后心存侥幸",
+      "count": 0
+    }
+  ],
+  "lessonNotes": {},
+  "journalEntries": [],
+  "completedLessons": []
+}
