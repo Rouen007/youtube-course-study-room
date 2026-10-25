@@ -20,10 +20,10 @@ import subprocess
 import sys
 
 
-def get_git_info():
+def get_git_info(target_dir):
     """Retrieve current commit SHA and status."""
     try:
-        sha = subprocess.check_output(["git", "rev-parse", "HEAD"], stderr=subprocess.DEVNULL).decode('utf-8').strip()
+        sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=target_dir, stderr=subprocess.DEVNULL).decode('utf-8').strip()
     except Exception:
         sha = "local-dev"
     return sha
@@ -32,7 +32,7 @@ def get_git_info():
 def stamp_version(target_dir):
     """Write version.json and version.js with ISO-8601 UTC timestamp and commit SHA."""
     now_utc = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    commit_sha = get_git_info()
+    commit_sha = get_git_info(target_dir)
 
     version_data = {
         "version": "1.0.0",
